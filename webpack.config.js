@@ -11,13 +11,7 @@ module.exports = {
   entry: require('./webpack/base/entry.config.js'),
   output: require('./webpack/base/output.config.js'),
   module: require('./webpack/base/module.config.js'),
-  resolve: {
-    extensions: ['', '.js', '.json', '.jsx'],
-    // alias: {
-    //   'react': path_react,
-    //   'react-dom': path_react_dom
-    // }
-  },
+  resolve: require('./webpack/base/resolve.config.js'),
   plugins: [
     new CopyWebpackPlugin([
       {from: 'app/index.html'},
