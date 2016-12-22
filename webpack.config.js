@@ -1,20 +1,7 @@
-const webpack = require('webpack');
+const PATH = require('path');
+console.log('*****'+process.env.NODE_ENV)
+const NODE_ENV = process.env.NODE_ENV.trim() || 'develop';
 
-module.exports = require('./webpack/webpack.develop.config.js');
+const envConfigPath = PATH.resolve(__dirname, 'webpack', 'webpack.' + NODE_ENV + '.config.js');
 
-// module.exports = {
-//   entry: require('./webpack/base/entry.config.js'),
-//   output: require('./webpack/base/output.config.js'),
-//   module: require('./webpack/base/module.config.js'),
-//   resolve: require('./webpack/base/resolve.config.js'),
-//   plugins: require('./webpack/base/plugins.config.js'),
-//   devServer: {
-//     contentBase: path.resolve(__dirname, './app'),
-//     port: 8080,
-//     host: '0.0.0.0',
-//     inline: true,
-//     historyApiFallback: true,
-//     progress: true,
-//     // stats: 'minimal'
-//   }
-// }
+module.exports = require(envConfigPath);

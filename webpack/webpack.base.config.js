@@ -20,7 +20,8 @@ module.exports = {
     filename: '[name]/app.js',
     chunkFilename: '[chunkhash:8].chunk.js',
     // publicPath: '../'  // 文件引用路径
-    publicPath: MODULE_PATH.compileRoot + '/'
+    publicPath: '/'  // 编译
+    // publicPath: MODULE_PATH.root + '/'
   },
   module: {
     loaders: [{
