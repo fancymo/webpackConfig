@@ -13,9 +13,13 @@ module.exports = {
   module: require('./webpack/base/module.config.js'),
   resolve: require('./webpack/base/resolve.config.js'),
   plugins: require('./webpack/base/plugins.config.js'),
-  devServer: {
-    contentBase: path.resolve(__dirname, './dist'),
-    port: 4000,
-    host: '0.0.0.0',
-  }
+  // devServer: {
+  //   contentBase: path.resolve(__dirname, './dist'),
+  //   port: 8080,
+  //   host: '0.0.0.0',
+  //   inline: true,
+  //   historyApiFallback: true,
+  //   progress: true,
+  //   stats: 'minimal'
+  // }
 }
