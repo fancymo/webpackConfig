@@ -1,12 +1,11 @@
 import React from 'react';
-import {Router, Route, hashHistory, IndexRoute, IndexRedirect} from 'react-router';
+import { Router, Route, hashHistory } from 'react-router';
 
 import Layout from '../layout';
 
 const Routers = (
   <Router history={hashHistory}>
-    <Route path="/" component={Layout}>
-    </Route>
+    <Route path="/" component={Layout} />
   </Router>);
 
 export default Routers;

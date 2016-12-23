@@ -3,9 +3,10 @@ const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const MODULE_PATH = {};
-MODULE_PATH.root = PATH.resolve(__dirname, '../');  //根目录
-MODULE_PATH.appRoot = PATH.resolve(MODULE_PATH.root, './app');  //项目根路径
-MODULE_PATH.compileRoot = PATH.resolve(MODULE_PATH.root, './dist');  //编译根目录
+MODULE_PATH.root = PATH.resolve(__dirname, '../');  // 根目录
+MODULE_PATH.appRoot = PATH.resolve(MODULE_PATH.root, './app');  // 项目根路径
+MODULE_PATH.compileRoot = PATH.resolve(MODULE_PATH.root, './dist');  // 编译根目录
+MODULE_PATH.eslintrc = PATH.resolve(MODULE_PATH.root, './.eslintrc');  // 测试文件
 
 const moduleArray = ['module00','module01'];
 let entryConfig = {};
@@ -19,11 +20,16 @@ module.exports = {
     path: MODULE_PATH.compileRoot,
     filename: '[name]/app.js',
     chunkFilename: '[chunkhash:8].chunk.js',
-    // publicPath: '../'  // 文件引用路径
     publicPath: '/'  // 编译
-    // publicPath: MODULE_PATH.root + '/'
   },
   module: {
+    preLoaders: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader'
+      }
+    ],
     loaders: [{
       test: /\.(js|jsx)$/,
       exclude: /node_modules/,
@@ -45,7 +51,6 @@ module.exports = {
       loader: 'file-loader?name=assets/fonts/[name].[ext]',
     }, {
       test: /\.(png|jpg|jpeg|gif)$/,
-      // loader: 'url-loader?limit=8192'
       loader: 'url-loader?limit=8192&name=assets/images/[name].[ext]'
     }]
   },
@@ -58,14 +63,6 @@ module.exports = {
     ]),
     new ExtractTextPlugin('[name]/main.css'),
     // new webpack.optimize.CommonsChunkPlugin('common/main.js',['main']),
-    // new webpack.optimize.UglifyJsPlugin({
-    //   compress: {
-    //     warnings: false,
-    //   },
-    //   output: {
-    //     comments: false,
-    //   },
-    // }),
   ],
   resolve: {
     extensions: ['', '.js', '.json', '.jsx'],
@@ -73,5 +70,11 @@ module.exports = {
     //   'react': path_react,
     //   'react-dom': path_react_dom
     // }
+  },
+  eslint: {
+    configFile: MODULE_PATH.eslintrc,
+    failOnWarning: true, // eslint报warning了就终止webpack编译
+    failOnError: true, // eslint报error了就终止webpack编译
+    // cache: true // 开启eslint的cache，cache存在node_modules/.cache目录里
   }
 };

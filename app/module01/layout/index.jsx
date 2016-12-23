@@ -1,11 +1,21 @@
-import React, {Component} from 'react';
-import './index.less'
+import React from 'react';
+import './index.less';
 
-class Layout extends Component {
-  render(){
+// class Layout extends Component {
+//
+//   render() {
+//     let a = 'testmodule00';
+//     if (this.props.data) {
+//       a = 'module00';
+//     }
+//
+//     return (<div className="layout">{a}</div>);
+//   }
+//
+// }
 
-    return (<div className="layout">module01</div>);
-  }
-}
+const Layout = function layout() {
+  return <div>sss</div>;
+};
 
 export default Layout;
