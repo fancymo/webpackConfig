@@ -76,9 +76,9 @@ class Button extends Component {
     let reactDOM = null;
 
     if (href) {
-      reactDOM = <a className={classes} href={href} onClick={this.handleClick} onTouchStart={this.handleMouseDown} onTouchEnd={this.handleMouseUp}>{children}</a>;
+      reactDOM = <a {...rest} className={classes} href={href} onClick={this.handleClick} onTouchStart={this.handleMouseDown} onTouchEnd={this.handleMouseUp}>{children}</a>;
     } else {
-      reactDOM = <button className={classes} type={type} onClick={this.handleClick} onTouchStart={this.handleMouseDown} onTouchEnd={this.handleMouseUp}>{children}</button>;
+      reactDOM = <button {...rest} className={classes} type={type} onClick={this.handleClick} onTouchStart={this.handleMouseDown} onTouchEnd={this.handleMouseUp}>{children}</button>;
     }
     return reactDOM;
   }
